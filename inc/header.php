@@ -10,7 +10,7 @@ require_once __DIR__ . '/../functions.php';
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= $page_name_header . $pages[$page_actual]; ?></title>
+    <title><?= $page_name_header . $pages_title[$page_actual]; ?></title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <!-- Custom CSS -->
@@ -32,10 +32,21 @@ require_once __DIR__ . '/../functions.php';
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-                    <a class="nav-link" href="#">Features</a>
-                    <a class="nav-link" href="#">Pricing</a>
-                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                    <?php
+                    $i = 0;
+                    foreach ($pages_nav as $page) {
+                        if ($i == $page_actual) {
+                    ?>
+                            <a class="nav-link pl-3 active" href="<?= $pages_url[$i]; ?>"><?= $page; ?></a>
+                        <?php
+                        } else {
+                        ?>
+                            <a class="nav-link pl-3" href="<?= $pages_url[$i]; ?>"><?= $page; ?></a>
+                    <?php
+                        }
+                        $i++;
+                    }
+                    ?>
                 </div>
             </div>
         </div>

@@ -1,5 +1,6 @@
-
-
+main {
+    min-height: 100vh;
+}
 
 .bg-main {
     background: url(../img/bg-dev.jpg);

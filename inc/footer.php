@@ -1,9 +1,6 @@
                 </div>
             </div>
         </div>
-
-
-
     </main>
 
     <!-- Footer Principal -->
