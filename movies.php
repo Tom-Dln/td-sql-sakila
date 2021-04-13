@@ -10,6 +10,13 @@ require_once __DIR__ . '/inc/header.php';
 <br>
 <br>
 
+<pre>
+    <?php 
+    $result = get_movies();
+    print_r($result);
+    ?>
+</pre>
+
 <!-- Fin du Contenu -->
 
 <?php require_once __DIR__ . '/inc/footer.php'; ?>

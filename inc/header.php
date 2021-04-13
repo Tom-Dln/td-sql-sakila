@@ -51,6 +51,11 @@ require_once __DIR__ . '/../functions.php';
             </div>
         </div>
     </nav>
+    <div class="bg-info text-white text-center py-1">
+        Actuellement en Construction
+    </div>
+
+
 
     <!-- Contenu Principal -->
     <main class="bg-main">
