@@ -1,3 +1,7 @@
+<!-- --------------------------------------------------
+    Fichier de Fonctions
+-------------------------------------------------- -->
+
 <?php
 
 function bdd_connect()
@@ -20,6 +24,7 @@ function bdd_connect()
     }
 }
 
+
 function get_movies()
 {
     $bdd_instance = bdd_connect();
@@ -27,14 +32,14 @@ function get_movies()
         SELECT
             `film_id`, `title`, `release_year`, `description`, `length`, `rating`
         FROM `film`
-        LIMIT 4 OFFSET 4
 EOD;
     // ``,
     $moviesStmt = $bdd_instance->query($request);
-    $movies = $moviesStmt->fetchAll();
+    $movies = $moviesStmt->fetchAll(PDO::FETCH_ASSOC);
     return $movies;
+    // LIMIT 4 OFFSET 4
+    // LIMIT :results_limit OFFSET :results_offset
 }
-
 
 
 function to_hours($minutes) {

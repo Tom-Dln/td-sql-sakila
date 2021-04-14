@@ -1,11 +1,21 @@
+<!-- --------------------------------------------------
+    Page Films
+-------------------------------------------------- -->
+
 <?php
+// Information de la Page
 $page_actual = 1;
+// Récupération Header
 require_once __DIR__ . '/inc/header.php';
+// BDD - Films
+$results_movies = get_movies();
+// Récupération Logique Pagination
+require_once __DIR__ . '/inc/pagination_init.php';
 ?>
 
 <!-- ##### Début du Contenu -->
 
-<!-- Affichage des Résultats -->
+<!-- Partie Résultats -->
 <div class="container">
     <!-- Entête Résultats -->
     <div class="row">
@@ -23,57 +33,44 @@ require_once __DIR__ . '/inc/header.php';
         </div>
     </div>
     <hr>
-    <!--PHP & Résultats -->
+    <!-- Affichage Résultats -->
     <?php
-    $results_movies = get_movies();
-    foreach ($results_movies as $key) {
+    for ($i = $results_limit * ($results_page - 1); $i < $results_limit * ($results_page - 1) + $results_limit; $i++) {
+        if ($i < $results_number) {
     ?>
-        <div class="row">
-            <div class="col-4">
-                <h4 class="font-weight-bold"><?= ucwords(strtolower($key[1])); ?></h4>
-                <p class="mb-0"><?= $key[2]; ?></p>
+            <div class="row">
+                <div class="col-4">
+                    <h4 class="font-weight-bold"><?= ucwords(strtolower($results_movies[$i]['title'])); ?></h4>
+                    <p class="mb-0"><?= $results_movies[$i]['release_year']; ?></p>
+                </div>
+                <div class="col-6">
+                    <p class="text-justify"><?= $results_movies[$i]['description'] . '.'; ?></p>
+                </div>
+                <div class="col-1">
+                    <p class="text-center"><?= to_hours($results_movies[$i]['length']); ?></p>
+                </div>
+                <div class="col-1">
+                    <p class="text-center"><?= $results_movies[$i]['rating']; ?></p>
+                </div>
             </div>
-            <div class="col-6">
-                <p class="text-justify"><?= $key[3] . '.'; ?></p>
-            </div>
-            <div class="col-1">
-                <p class="text-center"><?= to_hours($key[4]); ?></p>
-            </div>
-            <div class="col-1">
-                <p class="text-center"><?= $key[5]; ?></p>
-            </div>
-        </div>
-        <hr>
+            <hr>
     <?php
+        }
     }
     ?>
 </div>
 
-<!-- Pagination des Résutats -->
+<!-- Partie Pagination -->
+<?php require_once __DIR__ . '/inc/pagination_nav.php'; ?>
+
+<!-- DEBUG -->
+<!-- <pre>
 <?php
-$results_number = count($results_movies);
-$results_pages = ceil($results_number / 1);
-
-print_r($results_number . ' ');
-print_r($results_pages);
-
-require_once __DIR__ . '/inc/pagination.php';
+# print_r($results_movies);
 ?>
-
-
-
-
-
-<pre>
-<?php
- print_r($results_movies);
-?>
-</pre>
-
-
-
-
+</pre> -->
 
 <!-- ##### Fin du Contenu -->
 
+<!-- Récupération Header -->
 <?php require_once __DIR__ . '/inc/footer.php'; ?>
