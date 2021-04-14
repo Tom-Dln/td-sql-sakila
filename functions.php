@@ -27,6 +27,7 @@ function get_movies()
         SELECT
             `film_id`, `title`, `release_year`, `description`, `length`, `rating`
         FROM `film`
+        LIMIT 4 OFFSET 4
 EOD;
     // ``,
     $moviesStmt = $bdd_instance->query($request);
@@ -34,7 +35,6 @@ EOD;
     return $movies;
 }
 
-// LIMIT 4 OFFSET 4
 
 
 function to_hours($minutes) {

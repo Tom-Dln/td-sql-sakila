@@ -23,7 +23,7 @@ require_once __DIR__ . '/../functions.php';
     <!-- Navigation Principale -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow">
         <div class="container">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="index.php">
                 <img src="assets/img/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
                 Bootstrap
             </a>
@@ -61,4 +61,4 @@ require_once __DIR__ . '/../functions.php';
     <main class="bg-main">
         <div class="container">
             <div class="row">
-                <div class="col-12 my-5 py-4 bg-light rounded-lg shadow">
+                <div class="col-12 my-5 pt-4 pb-3 bg-light rounded-lg shadow">
