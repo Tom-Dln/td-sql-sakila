@@ -41,6 +41,24 @@ EOD;
     // LIMIT :results_limit OFFSET :results_offset
 }
 
+
+function get_movie($movie_id)
+{
+    $bdd_instance = bdd_connect();
+    $request = <<<EOD
+        SELECT
+            `film_id`, `title`, `release_year`, `description`, `length`, `rating`
+        FROM `film`
+        WHERE `film_id` = :movie_id
+EOD;
+    $movieStmt = $bdd_instance->prepare($request);
+    $movieStmt->bindValue(':movie_id', $movie_id);
+    $movieStmt->execute();
+    $movie = $movieStmt->fetchAll(PDO::FETCH_ASSOC);
+    return $movie;
+}
+
+
 function get_actors()
 {
     $bdd_instance = bdd_connect();
@@ -50,14 +68,48 @@ function get_actors()
         FROM `actor`
         ORDER BY `first_name`
 EOD;
-    // ``,
     $actorsStmt = $bdd_instance->query($request);
     $actors = $actorsStmt->fetchAll(PDO::FETCH_ASSOC);
     return $actors;
 }
 
 
-function to_hours($minutes) {
+function get_actor($actor_id)
+{
+    $bdd_instance = bdd_connect();
+    $request = <<<EOD
+        SELECT
+            `first_name`, `last_name`
+        FROM `actor`
+        WHERE `actor_id` = :actor_id
+EOD;
+    $actorStmt = $bdd_instance->prepare($request);
+    $actorStmt->bindValue(':actor_id', $actor_id);
+    $actorStmt->execute();
+    $actor = $actorStmt->fetchAll(PDO::FETCH_ASSOC);
+    return $actor;
+}
+
+
+function get_actor_films($actor_id)
+{
+    $bdd_instance = bdd_connect();
+    $request = <<<EOD
+        SELECT
+            `film_id`
+        FROM `film_actor`
+        WHERE `actor_id` = :actor_id
+EOD;
+    $actor_filmsStmt = $bdd_instance->prepare($request);
+    $actor_filmsStmt->bindValue(':actor_id', $actor_id);
+    $actor_filmsStmt->execute();
+    $actor_films = $actor_filmsStmt->fetchAll(PDO::FETCH_ASSOC);
+    return $actor_films;
+}
+
+
+function to_hours($minutes)
+{
     $coeff = $minutes / 60;
     $hours = floor($coeff);
     $mins = $minutes - 60 * $hours;
