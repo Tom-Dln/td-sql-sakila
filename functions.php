@@ -25,11 +25,25 @@ function get_movies()
     $bdd_instance = bdd_connect();
     $request = <<<EOD
         SELECT
-            `film_id`, `title`, `description`, `release_year`, `length`, `special_features`
+            `film_id`, `title`, `release_year`, `description`, `length`, `rating`
         FROM `film`
 EOD;
     // ``,
     $moviesStmt = $bdd_instance->query($request);
     $movies = $moviesStmt->fetchAll();
     return $movies;
+}
+
+// LIMIT 4 OFFSET 4
+
+
+function to_hours($minutes) {
+    $coeff = $minutes / 60;
+    $hours = floor($coeff);
+    $mins = $minutes - 60 * $hours;
+    if ($mins < 10) {
+        $mins = '0' . $mins;
+    }
+    $result = $hours . 'h' . $mins;
+    return $result;
 }

@@ -61,4 +61,4 @@ require_once __DIR__ . '/../functions.php';
     <main class="bg-main">
         <div class="container">
             <div class="row">
-                <div class="col-12 my-5 bg-light rounded-lg shadow">
+                <div class="col-12 my-5 py-4 bg-light rounded-lg shadow">
