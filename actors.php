@@ -1,14 +1,14 @@
 <!-- --------------------------------------------------
-    Page Films
+    Page Acteurs
 -------------------------------------------------- -->
 
 <?php
 // Information de la Page
-$page_actual = 1;
+$page_actual = 2;
 // Récupération Header
 require_once __DIR__ . '/inc/header.php';
 // BDD - Films
-$results = get_movies();
+$results = get_actors();
 // Récupération Logique Pagination
 require_once __DIR__ . '/inc/pagination_init.php';
 ?>
@@ -19,22 +19,19 @@ require_once __DIR__ . '/inc/pagination_init.php';
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <h1 class="mb-5">Liste des Films :</h1>
+            <h1 class="mb-5">Liste des Acteurs :</h1>
         </div>
     </div>
     <!-- Entête Résultats -->
     <div class="row">
-        <div class="col-4">
-            <p>Nom et Année de diffusion</p>
+        <div class="col-5">
+            <p>Prénom</p>
         </div>
-        <div class="col-6">
-            <p>Description</p>
+        <div class="col-5">
+            <p>Nom</p>
         </div>
-        <div class="col-1">
-            <p class="text-center">Durée</p>
-        </div>
-        <div class="col-1">
-            <p class="text-center">Classe</p>
+        <div class="col-2">
+            <p class="text-center"></p>
         </div>
     </div>
     <hr>
@@ -44,18 +41,14 @@ require_once __DIR__ . '/inc/pagination_init.php';
         if ($i < $results_number) {
     ?>
             <div class="row">
-                <div class="col-4">
-                    <h4 class="font-weight-bold"><?= ucwords(strtolower($results[$i]['title'])); ?></h4>
-                    <p class="mb-0"><?= $results[$i]['release_year']; ?></p>
+                <div class="col-5">
+                    <h4><?= $results[$i]['first_name']; ?></h4>
                 </div>
-                <div class="col-6">
-                    <p class="text-justify"><?= $results[$i]['description'] . '.'; ?></p>
+                <div class="col-5">
+                    <h4><?= $results[$i]['last_name']; ?></h4>
                 </div>
-                <div class="col-1">
-                    <p class="text-center"><?= to_hours($results[$i]['length']); ?></p>
-                </div>
-                <div class="col-1">
-                    <p class="text-center"><?= $results[$i]['rating']; ?></p>
+                <div class="col-2">
+                    <a class="btn btn-primary w-100" href="./actor.php?id=<?= $results[$i]['actor_id']; ?>" role="button">Voir la Fiche</a>
                 </div>
             </div>
             <hr>

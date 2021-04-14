@@ -9,6 +9,6 @@ if (isset($_GET['page'])) {
 } else {
     $results_page = 1;
 }
-$results_number = count($results_movies);
+$results_number = count($results);
 $results_pages = ceil($results_number / $results_limit);
 ?>

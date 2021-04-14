@@ -41,6 +41,21 @@ EOD;
     // LIMIT :results_limit OFFSET :results_offset
 }
 
+function get_actors()
+{
+    $bdd_instance = bdd_connect();
+    $request = <<<EOD
+        SELECT
+            `actor_id`, `first_name`, `last_name`
+        FROM `actor`
+        ORDER BY `first_name`
+EOD;
+    // ``,
+    $actorsStmt = $bdd_instance->query($request);
+    $actors = $actorsStmt->fetchAll(PDO::FETCH_ASSOC);
+    return $actors;
+}
+
 
 function to_hours($minutes) {
     $coeff = $minutes / 60;
